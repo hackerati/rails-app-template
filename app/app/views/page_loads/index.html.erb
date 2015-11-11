@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1 style="color: #2E7BB9">
+    Hello World! From The Hackerati
+</h1>
+<p>
+    Welcome to Rails App Template with Docker.
+</p>
+<p>
+    This is a starting point for a Docker-based Rails app, configured for
+    continuous integration with Travis and continuous deployment to AWS.
+    Just clone and rename the <a href="https://github.com/thehackerati/rails-app-template">repo</a>
+    and start coding!
+</p>
+<p>
+    Learn more about us at <a href="http://www.thehackerati.com">thehackerati.com</a>.
+</p>
+<p>
+    Happy hacking :]
+</p>
+<p>
+  <div class="page_load_list">
+
+    <% @page_loads.each do |page_load| %>
+    <div class="page_load">
+      Page loaded on: <%= page_load.datetime_stamp %>
+    </div>
+    <% end %>
+
+  </div>
+</p>

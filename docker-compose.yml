@@ -1,0 +1,11 @@
+db:
+  image: postgres
+
+appsvr:
+  build: ./app
+  volumes:
+    - ./app:/src/app/
+  links:
+    - db
+  ports:
+    - "127.0.0.1:3000:3000"
