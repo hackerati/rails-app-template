@@ -4,7 +4,7 @@ db:
 appsvr:
   build: ./app
   volumes:
-    - ./app:/src/app/
+    - ./app:/home/app/rails_app
   links:
     - db
   ports:

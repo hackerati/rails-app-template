@@ -1,14 +1,20 @@
-FROM rails:4.2.4
+FROM phusion/passenger-full
 
 # throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config --global frozen 1
 
-WORKDIR /src/app
-COPY Gemfile /src/app/
-COPY Gemfile.lock /src/app/
+RUN mkdir -p /home/app/rails_app
+WORKDIR /home/app/rails_app
+COPY Gemfile /home/app/rails_app
+COPY Gemfile.lock /home/app/rails_app
 RUN bundle install
 
-RUN apt-get update && apt-get install -y nodejs --no-install-recommends && rm -rf /var/lib/apt/lists/*
-RUN apt-get update && apt-get install -y mysql-client postgresql-client sqlite3 --no-install-recommends && rm -rf /var/lib/apt/lists/*
+RUN rm /etc/nginx/sites-enabled/default
+ADD ./rails_app.conf /etc/nginx/sites-enabled/rails_app.conf
+ADD rails_env.conf /etc/nginx/main.d/rails_env.conf
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
+# Enable nginx and passenger
+RUN rm -f /etc/service/nginx/down
+
+RUN apt-get update && apt-get install -y postgresql-client
+
