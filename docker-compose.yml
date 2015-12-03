@@ -1,6 +1,9 @@
 db:
   image: postgres
 
+haproxy:
+  build: ./haproxy
+
 appsvr:
   build: ./app
   volumes:
