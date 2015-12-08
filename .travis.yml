@@ -1,0 +1,19 @@
+language: ruby
+services:
+  - postgresql
+rvm:
+  - '2.2'
+  - '2.1'
+addons:
+  postgresql: "9.3"
+env:
+  - DB=travis
+install:
+  - cd app
+  - bundle install --jobs=3 --retry=3
+before_script:
+  - psql -c 'create database travisci;' -U postgres
+  - export ENVIRONMENT=development
+  - rake db:create db:migrate
+script:
+  - rake test
