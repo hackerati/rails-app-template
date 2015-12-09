@@ -93,7 +93,7 @@ ifdef FULL_APP_SERVER_ID
 	@docker exec -i -t $(FULL_APP_SERVER_ID) bash -c "cd /src/app/ && rake test"
 else
 	@echo "You must start docker-compose before running tests"
-	@echo "Please run \`make up\`"
+	@echo "Please run \'make up\'"
 endif
 
 shell:
@@ -174,7 +174,7 @@ ifdef VAGRANT_DOCKER_COMPOSE
 	@echo "YES"
 else
 	@echo "Missing vagrant-docker-compose"
-	@echo "Please run \`make install_plugins\`"
+	@echo "Please run \'make install_plugins\'"
 	@exit 1
 endif
 
